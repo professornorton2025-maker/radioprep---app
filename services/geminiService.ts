@@ -3,12 +3,10 @@ import { GoogleGenAI, Type, Modality, GenerateContentResponse } from "@google/ge
 import { Message, Question, SearchResult } from "../types";
 
 const getAI = () => {
-  const apiKey =
-    localStorage.getItem("GEMINI_API_KEY") ||
-    import.meta.env.VITE_GEMINI_API_KEY ||
-    "";
+  const apiKey = localStorage.getItem("GEMINI_API_KEY");
 
-  if (!apiKey) {
+  if (!apiKey || apiKey.trim() === "") {
+    alert("❌ API Key do Gemini não encontrada. Recarregue a página e informe a chave.");
     throw new Error("API key is missing");
   }
 
