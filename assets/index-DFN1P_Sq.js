@@ -1,4 +1,11 @@
-(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const r of document.querySelectorAll('link[rel="modulepreload"]'))a(r);new MutationObserver(r=>{for(const f of r)if(f.type==="childList")for(const p of f.addedNodes)p.tagName==="LINK"&&p.rel==="modulepreload"&&a(p)}).observe(document,{childList:!0,subtree:!0});function l(r){const f={};return r.integrity&&(f.integrity=r.integrity),r.referrerPolicy&&(f.referrerPolicy=r.referrerPolicy),r.crossOrigin==="use-credentials"?f.credentials="include":r.crossOrigin==="anonymous"?f.credentials="omit":f.credentials="same-origin",f}function a(r){if(r.ep)return;r.ep=!0;const f=l(r);fetch(r.href,f)}})();function Uh(i){return i&&i.__esModule&&Object.prototype.hasOwnProperty.call(i,"default")?i.default:i}var ru={exports:{}},el={};/**
+// === GEMINI API KEY FIX ===
+const _GEMINI_API_KEY_ =
+  localStorage.getItem("GEMINI_API_KEY") ||
+  prompt("Cole sua chave da API Gemini:");
+
+if (_GEMINI_API_KEY_) {
+  localStorage.setItem("GEMINI_API_KEY", _GEMINI_API_KEY_);
+}(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const r of document.querySelectorAll('link[rel="modulepreload"]'))a(r);new MutationObserver(r=>{for(const f of r)if(f.type==="childList")for(const p of f.addedNodes)p.tagName==="LINK"&&p.rel==="modulepreload"&&a(p)}).observe(document,{childList:!0,subtree:!0});function l(r){const f={};return r.integrity&&(f.integrity=r.integrity),r.referrerPolicy&&(f.referrerPolicy=r.referrerPolicy),r.crossOrigin==="use-credentials"?f.credentials="include":r.crossOrigin==="anonymous"?f.credentials="omit":f.credentials="same-origin",f}function a(r){if(r.ep)return;r.ep=!0;const f=l(r);fetch(r.href,f)}})();function Uh(i){return i&&i.__esModule&&Object.prototype.hasOwnProperty.call(i,"default")?i.default:i}var ru={exports:{}},el={};/**
  * @license React
  * react-jsx-runtime.production.js
  *
