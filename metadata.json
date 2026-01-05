@@ -1,0 +1,9 @@
+{
+  "name": "Eusébio RadioPrep 2025",
+  "description": "Plataforma avançada de preparação para Técnico em Radiologia (Prefeitura de Eusébio/Consulpam 2025). Inclui simulados personalizados, mentor de IA com raciocínio profundo, análise de imagens e gerador de estudos visuais.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
