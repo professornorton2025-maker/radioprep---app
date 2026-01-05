@@ -36,9 +36,7 @@
 </head>
 <body class="bg-gray-50 text-gray-900">
     <div id="root"></div>
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
+   
           
             .then(reg => console.log('Service Worker registrado!', reg))
             .catch(err => console.log('Erro ao registrar Service Worker', err));
@@ -48,5 +46,6 @@
 
 </body>
 </html>
+
 
 
