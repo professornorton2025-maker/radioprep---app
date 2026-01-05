@@ -36,7 +36,23 @@
 </head>
 <body class="bg-gray-50 text-gray-900">
     <div id="root"></div>
-   
+   <script>
+  (function () {
+    const KEY_NAME = "GEMINI_API_KEY";
+
+    // Se já tem chave salva, não faz nada
+    if (localStorage.getItem(KEY_NAME)) return;
+
+    const k = prompt("Cole sua GEMINI API KEY (ela será salva neste navegador):");
+    if (k && k.trim()) {
+      localStorage.setItem(KEY_NAME, k.trim());
+      alert("Chave salva! Vou recarregar a página.");
+      location.reload();
+    } else {
+      alert("Sem chave, as funções de IA não vão funcionar.");
+    }
+  })();
+</script>
           
             .then(reg => console.log('Service Worker registrado!', reg))
             .catch(err => console.log('Erro ao registrar Service Worker', err));
@@ -46,6 +62,7 @@
 
 </body>
 </html>
+
 
 
 
