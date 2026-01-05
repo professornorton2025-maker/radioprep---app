@@ -2,7 +2,18 @@
 import { GoogleGenAI, Type, Modality, GenerateContentResponse } from "@google/genai";
 import { Message, Question, SearchResult } from "../types";
 
-const getAI = () => new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+const getAI = () => {
+  const apiKey =
+    localStorage.getItem("GEMINI_API_KEY") ||
+    import.meta.env.VITE_GEMINI_API_KEY ||
+    "";
+
+  if (!apiKey) {
+    throw new Error("API key is missing");
+  }
+
+  return new GoogleGenAI({ apiKey });
+};
 
 const checkOnline = () => {
   if (!navigator.onLine) {
