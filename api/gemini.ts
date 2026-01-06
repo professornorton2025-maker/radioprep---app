@@ -63,14 +63,26 @@ export default async function handler(
     const ai = new GoogleGenAI({ apiKey });
 
     const result = await ai.models.generateContent({
-      model: "gemini-1.5-flash",
-      contents: prompt,
-    });
+  model: "gemini-1.5-flash",
+  contents: [
+    {
+      role: "user",
+      parts: [{ text: prompt }],
+    },
+  ],
+});
 
-    return res.status(200).json({
-      ok: true,
-      text: result.text,
-    });
+// Forma robusta de obter o texto (funciona em mais versões do SDK)
+const text =
+  (result as any).text ??
+  (result as any).response?.text?.() ??
+  (result as any).candidates?.[0]?.content?.parts?.map((p: any) => p.text).join("") ??
+  "";
+
+return res.status(200).json({
+  ok: true,
+  text,
+});
   } catch (err: any) {
     return res.status(500).json({
       error: "Erro ao chamar o Gemini",
