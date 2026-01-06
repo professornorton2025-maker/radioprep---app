@@ -1,7 +1,7 @@
 {
   "functions": {
-    "api/api/generate.js": {
-      "runtime": "nodejs20.x"
+    "api/generate.js": {
+      "maxDuration": 60
     }
   }
 }
