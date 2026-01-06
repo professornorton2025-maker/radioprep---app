@@ -213,7 +213,7 @@ export async function chatWithThinking(input: string | Message[]): Promise<strin
               .map((p: any) => (typeof p === "string" ? p : p?.text ?? ""))
               .join(" ");
             // ✅ aqui tem crase (template string)
-            return `${m.role}: ${partsText}`;
+            return m.role + ": " + partsText;
           })
           .join("\n");
 
