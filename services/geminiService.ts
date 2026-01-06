@@ -202,20 +202,31 @@ export const findStudyCenters = async (lat: number, lng: number) => {
   return { text: response.text, places: uniquePlaces };
 };
 // ✅ Chat via backend seguro (Vercel)
-export async function chatWithThinking(prompt: string): Promise<string> {
+// Aceita string OU array de mensagens
+export async function chatWithThinking(input: string | Message[]): Promise<string> {
+  const prompt =
+    typeof input === "string"
+      ? input
+      : input
+          .map((m) => {
+            const partsText = (m.parts || [])
+              .map((p: any) => (typeof p === "string" ? p : p?.text ?? ""))
+              .join(" ");
+            return ${m.role}: ${partsText};
+          })
+          .join("\n");
+
   const response = await fetch("/api/gemini", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ prompt }),
   });
 
+  const data = await response.json().catch(() => ({}));
+
   if (!response.ok) {
-    const err = await response.json();
-    throw new Error(err.error || "Erro ao chamar API Gemini");
+    throw new Error(data?.error || "Erro ao chamar API Gemini");
   }
 
-  const data = await response.json();
   return data.text;
 }
