@@ -109,25 +109,7 @@ export const fetchSimuladoQuestions = async (count: number = 20, mode: string = 
   }
 };
 
-export const chatWithThinking = async (messages: Message[]) => {
-  checkOnline();
-  const ai = getAI();
-  const contents = messages.map(m => ({
-    role: m.role,
-    parts: m.parts
-  }));
 
-  const response = await ai.models.generateContent({
-    model: 'gemini-3-pro-preview',
-    contents,
-    config: {
-      systemInstruction: `Você é o "Mentor RadioPrep", um tutor de IA especializado no concurso de Técnico em Radiologia da Prefeitura de Eusébio/CE, banca Consulpam.`,
-      thinkingConfig: { thinkingBudget: 16000 }
-    },
-  });
-
-  return response.text;
-};
 
 export const analyzeImage = async (base64Data: string, prompt: string) => {
   checkOnline();
