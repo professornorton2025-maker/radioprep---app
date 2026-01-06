@@ -4,7 +4,9 @@ import { Message, Question, SearchResult } from "../types";
 
 const getAI = () => {
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-
+if (!apiKey) {
+  throw new Error("VITE_GEMINI_API_KEY não encontrada");
+}
   if (!apiKey || apiKey.trim() === "") {
     alert("❌ API Key do Gemini não encontrada. Recarregue a página e informe a chave.");
     throw new Error("API key is missing");
