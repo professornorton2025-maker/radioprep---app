@@ -212,6 +212,7 @@ export async function chatWithThinking(input: string | Message[]): Promise<strin
             const partsText = (m.parts || [])
               .map((p: any) => (typeof p === "string" ? p : p?.text ?? ""))
               .join(" ");
+            // ✅ aqui tem crase (template string)
             return ${m.role}: ${partsText};
           })
           .join("\n");
@@ -222,11 +223,11 @@ export async function chatWithThinking(input: string | Message[]): Promise<strin
     body: JSON.stringify({ prompt }),
   });
 
-  const data = await response.json().catch(() => ({}));
+  const data = await response.json().catch(() => ({} as any));
 
   if (!response.ok) {
-    throw new Error(data?.error || "Erro ao chamar API Gemini");
+    throw new Error(data?.error || Erro ao chamar API Gemini (HTTP ${response.status}));
   }
 
-  return data.text;
+  return data.text || "";
 }
