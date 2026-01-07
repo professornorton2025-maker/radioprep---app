@@ -62,15 +62,12 @@ export default async function handler(
 
     const ai = new GoogleGenAI({ apiKey });
 
-    const result = await ai.models.generateContent({
-  model: "gemini-1.5-flash",
-  contents: [
-    {
-      role: "user",
-      parts: [{ text: prompt }],
-    },
-  ],
-});
+   const model = ai.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+const result = await model.generateContent(prompt);
+
+// texto final
+const text = result.response.text();
 
 // Forma robusta de obter o texto (funciona em mais versões do SDK)
 const text =
