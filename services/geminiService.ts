@@ -226,7 +226,7 @@ export async function chatWithThinking(input: string | Message[]): Promise<strin
   const data = await response.json().catch(() => ({} as any));
 
   if (!response.ok) {
-    throw new Error(data?.error || Erro ao chamar API Gemini (HTTP ${response.status}));
+    throw new Error(data?.error ||`Erro ao chamar API Gemini (HTTP ${response.status})`);
   }
 
   return data.text || "";
